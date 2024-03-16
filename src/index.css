@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+}

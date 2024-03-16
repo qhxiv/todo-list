@@ -1,0 +1,129 @@
+.app {
+  width: 700px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, .24) 0 3px 8px;
+  border: 2px solid gray;
+  padding: 0 16px 24px 16px;
+}
+
+header {
+  margin: 24px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__title {
+  margin: 0;
+  font-size: 28px;
+}
+
+.header__dark {
+  background-color: transparent;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+    opacity: .7;
+  }
+}
+
+.header__dark i {
+  font-size: 24px;
+}
+
+.todo-add {
+  display: flex;
+  justify-content: center;
+}
+
+.todo-add__input {
+  flex: 1;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid black;
+  padding: 4px 8px;
+
+  &:active,
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid rgba(0, 0, 0, .5);
+  }
+}
+
+.todo-add__button {
+  margin-left: 16px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+}
+
+.todo-add__button:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
+.list {
+  padding-left: 0;
+  margin-bottom: 0;
+  margin-top: 24px;
+  list-style-type: none;
+}
+
+.list__title {
+  font-size: 20px;
+  margin: 0;
+}
+
+.todo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 0;
+
+  &:hover {
+    & .todo__line,
+    & .todo__control {
+      opacity: 1;
+    }
+  }
+}
+
+.todo__content {
+  font-size: 16px;
+  font-weight: 500;
+  margin-right: 20px;
+}
+
+.todo__line {
+  opacity: 0;
+  height: 2px;
+  background-color: darkgray;
+  flex: 1;
+}
+
+.todo__control {
+  margin-left: 16px;
+  opacity: 0;
+}
+
+.todo__control button {
+  background-color: transparent;
+  border: none;
+  padding: 4px;
+  margin-left: 4px;
+  
+  &:hover i {
+    cursor: pointer;
+    opacity: .7;
+  }
+}
+
+.todo__control i {
+  font-size: 20px;
+}
+
+.todo__modify i {
+  font-size: 16px;
+}
