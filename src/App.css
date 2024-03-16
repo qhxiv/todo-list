@@ -1,8 +1,8 @@
 .app {
   width: 700px;
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, .24) 0 3px 8px;
-  border: 2px solid gray;
+  background-color: light-dark(var(--light-main-bg), var(--dark-bg));
+  box-shadow: rgba(0, 0, 0, .5) 0 3px 7px;
+  border: 2px solid light-dark(var(--light-border), var(--dark-border));
   padding: 0 16px 24px 16px;
 }
 
@@ -13,6 +13,7 @@ header {
 }
 
 .header__title {
+  color: light-dark(var(--light-title), var(--dark-title));
   margin: 0;
   font-size: 28px;
 }
@@ -25,10 +26,11 @@ header {
     cursor: pointer;
     opacity: .7;
   }
-}
 
-.header__dark i {
-  font-size: 24px;
+  & i {
+    font-size: 24px;
+    color: light-dark(var(--light-title), var(--dark-title));
+  }
 }
 
 .todo-add {
@@ -41,14 +43,18 @@ header {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-size: 16px;
+  font-weight: 500;
   border: none;
-  border-bottom: 2px solid black;
+  background-color: light-dark(var(--light-main-bg), var(--dark-bg));
+  color: light-dark(var(--light-input), var(--dark-input));
+  border-bottom: 2px solid light-dark(var(--light-input), var(--dark-input));
   padding: 4px 8px;
 
   &:active,
   &:focus {
     outline: none;
-    border-bottom: 2px solid rgba(0, 0, 0, .5);
+    border-bottom: 2px solid light-dark(var(--light-text), var(--dark-text));
+    color: light-dark(var(--light-text), var(--dark-text));
   }
 }
 
@@ -57,11 +63,15 @@ header {
   background-color: transparent;
   border: none;
   font-size: 20px;
-}
 
-.todo-add__button:hover {
-  cursor: pointer;
-  opacity: .7;
+  &:hover {
+    cursor: pointer;
+    opacity: .7;
+  }
+
+  & i {
+    color: light-dark(var(--light-title), var(--dark-title));
+  }
 }
 
 .list {
@@ -72,6 +82,7 @@ header {
 }
 
 .list__title {
+  color: light-dark(var(--light-title), var(--dark-title));
   font-size: 20px;
   margin: 0;
 }
@@ -90,7 +101,13 @@ header {
   }
 }
 
+.todo--completed {
+  text-decoration: line-through;
+  text-decoration-color: light-dark(var(--light-text), var(--dark-text));
+}
+
 .todo__content {
+  color: light-dark(var(--light-text), var(--dark-text));
   font-size: 16px;
   font-weight: 500;
   margin-right: 20px;
@@ -99,13 +116,17 @@ header {
 .todo__line {
   opacity: 0;
   height: 2px;
-  background-color: darkgray;
+  background-color: light-dark(var(--light-text), var(--dark-text));
   flex: 1;
 }
 
 .todo__control {
   margin-left: 16px;
   opacity: 0;
+  
+  & i {
+    color: light-dark(var(--light-text), var(--dark-text));
+  }
 }
 
 .todo__control button {
@@ -125,5 +146,9 @@ header {
 }
 
 .todo__modify i {
+  font-size: 16px;
+}
+
+.todo__restore i {
   font-size: 16px;
 }

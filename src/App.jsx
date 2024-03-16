@@ -15,14 +15,14 @@ function App() {
       <TodoAdd />
 
       <List status='Current'>
-        <Todo content='sleep'/>
-        <Todo content='read book'/>
+        <Todo completed={false} content='sleep'/>
+        <Todo completed={false} content='read book'/>
       </List>
 
       <List status='Completed'>
-        <Todo content='cook'/>
-        <Todo content='write code'/>
-        <Todo content='eat'/>
+        <Todo completed={true} content='cook'/>
+        <Todo completed={true} content='write code'/>
+        <Todo completed={true} content='eat'/>
       </List>
     </div>
   );

@@ -1,7 +1,25 @@
+:root {
+  color-scheme: light dark;
+
+  --light-bg: whitesmoke;
+  --light-main-bg: white;
+  --light-text: #343a40;
+  --light-title: #212529;
+  --light-border: #595959;
+  --light-input: #282828;
+
+  --dark-bg: #282828;
+  --dark-text: #b2b2b2;
+  --dark-title: #e3e3e3;
+  --dark-border: #d3d3d3;
+  --dark-input: #7e7e7e;
+}
+
 body {
+  color-scheme: dark;
   margin: 0;
   height: 100vh;
-  background-color: whitesmoke;
+  background-color: light-dark(var(--light-bg), var(--dark-bg));
   display: flex;
   align-items: center;
   justify-content: center;
