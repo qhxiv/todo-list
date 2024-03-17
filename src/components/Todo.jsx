@@ -12,9 +12,15 @@ function Todo({
   const contentRef = useRef(null);
 
   function saveTodo() {
+    const innerText = contentRef.current.innerText;
+
     contentRef.current.contentEditable = false;
     setIsEditting(false);
-    updateTodoList(content, contentRef.current.innerText, completed);
+    if (innerText.length === 0) {
+      removeTodo(content, completed);
+    } else {
+      updateTodoList(content, innerText, completed);
+    }
   }
 
   return (

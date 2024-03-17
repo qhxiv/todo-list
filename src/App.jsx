@@ -105,7 +105,6 @@ function App() {
                 updateTodoList={updateTodoList}
                 removeTodo={removeTodo}
                 completeTodo={completeTodo}
-                restoreTodo={restoreTodo}
               />
             )
           }
@@ -121,7 +120,6 @@ function App() {
                 content={item.content}
                 updateTodoList={updateTodoList}
                 removeTodo={removeTodo}
-                completeTodo={completeTodo}
                 restoreTodo={restoreTodo}
               />
             )
