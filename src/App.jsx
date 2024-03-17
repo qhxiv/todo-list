@@ -8,27 +8,27 @@ import List from './components/List.jsx';
 import './App.css';
 
 function App() {
-  const [currentList, setCurrentList] = useState([
-    // {completed: false, content: 'sleep'},
-    // {completed: false, content: 'read book'}
-  ]);
+  const [currentList, setCurrentList] = useState(
+    JSON.parse(localStorage.getItem('currentList')) || []
+  );
 
-  const [completedList, setCompletedList] = useState([
-    // {completed: true, content: 'cook'},
-    // {completed: true, content: 'eat'},
-    // {completed: true, content: 'write code'}
-  ]);
+  const [completedList, setCompletedList] = useState(
+    JSON.parse(localStorage.getItem('completedList')) || []
+  );
 
   function updateTodoList(id, content, completed) {
     const list = completed ? completedList : currentList;
     const setList = completed ? setCompletedList : setCurrentList;
     const index = list.findIndex(item => item.content === id);
 
-    setList([
+    const nextList = [
       ...list.slice(0, index),
       {completed, content},
       ...list.slice(index + 1)
-    ]);
+    ];
+
+    localStorage.setItem(completed ? 'completedList' : 'currentList', JSON.stringify(nextList));
+    setList(nextList);
   }
   
   function removeTodo(id, completed) {
@@ -36,10 +36,13 @@ function App() {
     const setList = completed ? setCompletedList : setCurrentList;
     const index = list.findIndex(item => item.content === id);
 
-    setList([
+    const nextList = [
       ...list.slice(0, index),
       ...list.slice(index + 1)
-    ]);
+    ];
+
+    localStorage.setItem(completed ? 'completedList' : 'currentList', JSON.stringify(nextList));
+    setList(nextList);
   }
   
   function newTodo(content) {
@@ -48,21 +51,26 @@ function App() {
       duplicatedItem = completedList.find(item => item.content === content);
     
     if (content.length !== 0 && duplicatedItem === undefined) {
-      setCurrentList([
+      const nextList = [
         {completed: false, content},
         ...currentList
-      ]);
+      ];
+
+      localStorage.setItem('currentList', JSON.stringify(nextList));
+      setCurrentList(nextList);
     }
   }
 
   function addTodo(content, completed) {
     const list = completed ? completedList : currentList;
     const setList = completed ? setCompletedList : setCurrentList;
-
-    setList([
+    const nextList = [
       {completed, content},
       ...list
-    ]);
+    ];
+
+    localStorage.setItem(completed ? 'completedList' : 'currentList', JSON.stringify(nextList));
+    setList(nextList);
   }
   
   function completeTodo(id) {
@@ -83,39 +91,41 @@ function App() {
         newTodo={newTodo}
       />
 
-      <List status='Current'>
-        {currentList.length === 0 ?
-          <p className="list__placeholder">Your haven't added any todos yet</p>
-        :  
-          currentList.map(item =>
-            <Todo
-              completed={item.completed}
-              content={item.content}
-              updateTodoList={updateTodoList}
-              removeTodo={removeTodo}
-              completeTodo={completeTodo}
-              restoreTodo={restoreTodo}
-            />
-          )
-        }
-      </List>
+      <div className="list-wrapper">
+        <List status='Current'>
+          {currentList.length === 0 ?
+            <p className="list__placeholder">Empty</p>
+          :  
+            currentList.map(item =>
+              <Todo
+                completed={item.completed}
+                content={item.content}
+                updateTodoList={updateTodoList}
+                removeTodo={removeTodo}
+                completeTodo={completeTodo}
+                restoreTodo={restoreTodo}
+              />
+            )
+          }
+        </List>
 
-      <List status='Completed'>
-        {completedList.length === 0 ?
-          <p className="list__placeholder">You hven't completed any todos yet</p>
-        :
-          completedList.map(item =>
-            <Todo
-              completed={item.completed}
-              content={item.content}
-              updateTodoList={updateTodoList}
-              removeTodo={removeTodo}
-              completeTodo={completeTodo}
-              restoreTodo={restoreTodo}
-            />
-          )
-        }
-      </List>
+        <List status='Completed'>
+          {completedList.length === 0 ?
+            <p className="list__placeholder">Empty</p>
+          :
+            completedList.map(item =>
+              <Todo
+                completed={item.completed}
+                content={item.content}
+                updateTodoList={updateTodoList}
+                removeTodo={removeTodo}
+                completeTodo={completeTodo}
+                restoreTodo={restoreTodo}
+              />
+            )
+          }
+        </List>
+      </div>
     </div>
   );
 }

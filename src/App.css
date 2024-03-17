@@ -3,13 +3,13 @@
   background-color: light-dark(var(--light-main-bg), var(--dark-bg));
   box-shadow: rgba(0, 0, 0, .5) 0 3px 7px;
   border: 2px solid light-dark(var(--light-border), var(--dark-border));
-  padding: 0 16px 24px 16px;
 }
 
 header {
   margin: 24px 0;
   display: flex;
   justify-content: space-between;
+  padding: 0 16px;
 }
 
 .header__title {
@@ -36,6 +36,7 @@ header {
 .todo-add {
   display: flex;
   justify-content: center;
+  padding: 0 16px;
 }
 
 .todo-add__input {
@@ -72,6 +73,12 @@ header {
   & i {
     color: light-dark(var(--light-title), var(--dark-title));
   }
+}
+
+.list-wrapper {
+  overflow: auto;
+  height: 400px;
+  padding: 0 16px 16px 16px;
 }
 
 .list {

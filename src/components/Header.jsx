@@ -1,11 +1,15 @@
 import { useState } from 'react';
 
 function Header() {
-  const [scheme, setScheme] = useState('light');
+  const initScheme = localStorage.getItem('localScheme') || 'light';
+  const [scheme, setScheme] = useState(initScheme);
+  document.body.style.colorScheme = initScheme;
 
   function toggleDarkMode() {
-    setScheme(scheme === 'dark' ? 'light' : 'dark');
-    document.body.style.colorScheme = scheme;
+    let nextScheme = scheme === 'dark' ? 'light' : 'dark';
+    setScheme(nextScheme);
+    document.body.style.colorScheme = nextScheme;
+    localStorage.setItem('localScheme', nextScheme);
   }
 
   return (
@@ -13,7 +17,7 @@ function Header() {
       <h1 className="header__title">Todos</h1>
       
       <button onClick={toggleDarkMode} className="header__dark">
-        <i className={scheme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun'}></i>
+        <i className={scheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon'}></i>
       </button>
     </header>
   );
