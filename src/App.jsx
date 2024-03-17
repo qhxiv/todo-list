@@ -9,14 +9,14 @@ import './App.css';
 
 function App() {
   const [currentList, setCurrentList] = useState([
-    {completed: false, content: 'sleep'},
-    {completed: false, content: 'read book'}
+    // {completed: false, content: 'sleep'},
+    // {completed: false, content: 'read book'}
   ]);
 
   const [completedList, setCompletedList] = useState([
-    {completed: true, content: 'cook'},
-    {completed: true, content: 'eat'},
-    {completed: true, content: 'write code'}
+    // {completed: true, content: 'cook'},
+    // {completed: true, content: 'eat'},
+    // {completed: true, content: 'write code'}
   ]);
 
   function updateTodoList(id, content, completed) {
@@ -84,29 +84,37 @@ function App() {
       />
 
       <List status='Current'>
-        {currentList.map(item =>
-          <Todo
-            completed={item.completed}
-            content={item.content}
-            updateTodoList={updateTodoList}
-            removeTodo={removeTodo}
-            completeTodo={completeTodo}
-            restoreTodo={restoreTodo}
-          />
-        )}
+        {currentList.length === 0 ?
+          <p className="list__placeholder">Your haven't added any todos yet</p>
+        :  
+          currentList.map(item =>
+            <Todo
+              completed={item.completed}
+              content={item.content}
+              updateTodoList={updateTodoList}
+              removeTodo={removeTodo}
+              completeTodo={completeTodo}
+              restoreTodo={restoreTodo}
+            />
+          )
+        }
       </List>
 
       <List status='Completed'>
-        {completedList.map(item =>
-          <Todo
-            completed={item.completed}
-            content={item.content}
-            updateTodoList={updateTodoList}
-            removeTodo={removeTodo}
-            completeTodo={completeTodo}
-            restoreTodo={restoreTodo}
-          />
-        )}
+        {completedList.length === 0 ?
+          <p className="list__placeholder">You hven't completed any todos yet</p>
+        :
+          completedList.map(item =>
+            <Todo
+              completed={item.completed}
+              content={item.content}
+              updateTodoList={updateTodoList}
+              removeTodo={removeTodo}
+              completeTodo={completeTodo}
+              restoreTodo={restoreTodo}
+            />
+          )
+        }
       </List>
     </div>
   );
