@@ -7,8 +7,6 @@ function Header() {
     setScheme(scheme === 'dark' ? 'light' : 'dark');
     document.body.style.colorScheme = scheme;
   }
-  
-  
 
   return (
     <header>

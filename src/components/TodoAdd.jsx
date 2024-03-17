@@ -1,12 +1,36 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
-function TodoAdd() {
+function TodoAdd({ addTodo }) {
+  const [todo, setTodo] = useState('');
+  const inputRef = useRef(null);
+
+  function handleOnClick() {
+    addTodo(todo);
+    setTodo('');
+    inputRef.current.focus();
+  }
+
   return (
     <div className="todo-add">
-      <input type="text" placeholder='Enter a new todo' className="todo-add__input" />
+      <input
+        ref={inputRef}
+        value = {todo}
+        type="text"
+        placeholder='Enter a new todo'
+        className="todo-add__input" 
+        onChange={e => setTodo(e.target.value)}
+        onKeyDown={e => {
+          if (e.key === 'Enter') {
+            handleOnClick();
+          }
+        }}
+      />
 
-      <button className="todo-add__button">
-        <i class="fa-solid fa-plus"></i>
+      <button
+        className="todo-add__button"
+        onClick={handleOnClick}
+      >
+        <i className="fa-solid fa-plus"></i>
       </button>
     </div>
   );
