@@ -1,0 +1,57 @@
+.dark {
+  background-color: var(--dark-bg);
+
+  .app {
+    background-color: var(--dark-bg);
+    border: 2px solid var(--dark-border);
+  }
+
+  .header__title,
+  .header__dark i {
+    color: var(--dark-title);
+  }
+
+  .todo-add__input {
+    background-color: var(--dark-bg);
+    color: var(--dark-input);
+    border-bottom: 2px solid var(--dark-input);
+    
+    &:active,
+    &:focus {
+      border-bottom: 2px solid var(--dark-title);
+      color: var(--dark-title);
+    }
+  }
+
+  .todo-add__button i {
+    color: var(--dark-title);
+  }
+
+  .list__title {
+    color: var(--dark-title);
+  }
+
+  .todo--completed {
+    text-decoration-color: var(--dark-text);
+  }
+
+  .list__placeholder {
+    color: var(--dark-text);
+  }
+
+  .todo__content {
+    color: var(--dark-text);
+
+    &:focus {
+      border-bottom: 2px solid var(--dark-text);
+    }
+  }
+
+  .todo__line {
+    background-color: var(--dark-text);
+  }
+
+  .todo__control i {
+    color: var(--dark-text);
+  }
+}

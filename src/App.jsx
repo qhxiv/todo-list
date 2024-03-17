@@ -6,6 +6,8 @@ import Todo from './components/Todo.jsx';
 import List from './components/List.jsx';
 
 import './App.css';
+import './light.css';
+import './dark.css';
 
 function App() {
   const [currentList, setCurrentList] = useState(

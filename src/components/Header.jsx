@@ -3,12 +3,11 @@ import { useState } from 'react';
 function Header() {
   const initScheme = localStorage.getItem('localScheme') || 'light';
   const [scheme, setScheme] = useState(initScheme);
-  document.body.style.colorScheme = initScheme;
+  document.body.className = initScheme;
 
   function toggleDarkMode() {
     let nextScheme = scheme === 'dark' ? 'light' : 'dark';
     setScheme(nextScheme);
-    document.body.style.colorScheme = nextScheme;
     localStorage.setItem('localScheme', nextScheme);
   }
 
