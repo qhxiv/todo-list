@@ -16,7 +16,7 @@
 }
 
 body {
-  color-scheme: dark;
+  color-scheme: light;
   margin: 0;
   height: 100vh;
   background-color: light-dark(var(--light-bg), var(--dark-bg));

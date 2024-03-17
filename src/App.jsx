@@ -19,21 +19,60 @@ function App() {
     {completed: true, content: 'write code'}
   ]);
 
-  function editTodo() {
-    
-  }
+  function updateTodoList(id, content, completed) {
+    const list = completed ? completedList : currentList;
+    const setList = completed ? setCompletedList : setCurrentList;
+    const index = list.findIndex(item => item.content === id);
 
-  function addTodo(todo) {
-    let duplicatedItem = currentList.find(item => item.content === todo);
+    setList([
+      ...list.slice(0, index),
+      {completed, content},
+      ...list.slice(index + 1)
+    ]);
+  }
+  
+  function removeTodo(id, completed) {
+    const list = completed ? completedList : currentList;
+    const setList = completed ? setCompletedList : setCurrentList;
+    const index = list.findIndex(item => item.content === id);
+
+    setList([
+      ...list.slice(0, index),
+      ...list.slice(index + 1)
+    ]);
+  }
+  
+  function newTodo(content) {
+    let duplicatedItem = currentList.find(item => item.content === content);
     if (duplicatedItem === undefined)
-      duplicatedItem = completedList.find(item => item.content === todo);
+      duplicatedItem = completedList.find(item => item.content === content);
     
-    if (todo.length !== 0 && duplicatedItem === undefined) {
+    if (content.length !== 0 && duplicatedItem === undefined) {
       setCurrentList([
-        {completed: false, content: todo},
+        {completed: false, content},
         ...currentList
       ]);
     }
+  }
+
+  function addTodo(content, completed) {
+    const list = completed ? completedList : currentList;
+    const setList = completed ? setCompletedList : setCurrentList;
+
+    setList([
+      {completed, content},
+      ...list
+    ]);
+  }
+  
+  function completeTodo(id) {
+    removeTodo(id, false);
+    addTodo(id, true);
+  }
+
+  function restoreTodo(id) {
+    removeTodo(id, true);
+    addTodo(id, false);
   }
   
   return (
@@ -41,7 +80,7 @@ function App() {
       <Header />
 
       <TodoAdd
-        addTodo={addTodo}
+        newTodo={newTodo}
       />
 
       <List status='Current'>
@@ -49,6 +88,10 @@ function App() {
           <Todo
             completed={item.completed}
             content={item.content}
+            updateTodoList={updateTodoList}
+            removeTodo={removeTodo}
+            completeTodo={completeTodo}
+            restoreTodo={restoreTodo}
           />
         )}
       </List>
@@ -58,6 +101,10 @@ function App() {
           <Todo
             completed={item.completed}
             content={item.content}
+            updateTodoList={updateTodoList}
+            removeTodo={removeTodo}
+            completeTodo={completeTodo}
+            restoreTodo={restoreTodo}
           />
         )}
       </List>

@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react';
 
-function TodoAdd({ addTodo }) {
+function TodoAdd({ newTodo }) {
   const [todo, setTodo] = useState('');
   const inputRef = useRef(null);
 
   function handleOnClick() {
-    addTodo(todo);
+    newTodo(todo);
     setTodo('');
     inputRef.current.focus();
   }
