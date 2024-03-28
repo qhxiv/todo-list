@@ -110,6 +110,8 @@ header {
   font-weight: 500;
   margin-right: 20px;
   border-bottom: 2px solid transparent;
+  max-width: 400px;
+  text-align: justify;
 
   &:focus {
     outline: none;
